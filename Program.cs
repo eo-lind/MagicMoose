@@ -1,19 +1,10 @@
 ﻿using System;
 
-// creates an object using Random class
-Random r = new Random();
-
- int genRand= r.Next(-1,20);
-
-
 Main();
 
 void Main()
 {
-    // Let the moose speak!
-    MooseSays("Ask the all-knowing Magic Moose a question.");
-
-
+    RunMagicMoose();
 }
 
 void MooseSays(string message)
@@ -48,15 +39,18 @@ void MooseSays(string message)
     ");
 }
 
-Console.Write("Please type your question: ");
+void RunMagicMoose(){
+    Console.Write("What would you like to ask the all-knowing Magic Moose? ");
 
-string userQuestion = Console.ReadLine();
+    string UserQuestion = Console.ReadLine().ToLower();
 
-if (string.IsNullOrWhiteSpace(userQuestion))
-{
-    Console.WriteLine("You didn't type a question. I guess you know it all.");
-} else if (userQuestion != "")
-{
-    Console.WriteLine($"You asked: {userQuestion} - Here's what I have to say about that: ANSWERS GO HERE {genRand}");
+    string[] MooseAnswerArray = {
+        "As I see it, yes.", "Ask again later.", "Better not tell you now.", "Cannot predict now.", "Concentrate and ask again.", "Don't count on it.", "It is certain.", "It is decidedly so.", "Most likely.", "My reply is no.", "My sources say no.", "Outlook not so good.", "Outlook good.", "Reply hazy, try again.", "Signs point to yes.", "Very doubtful.", "Without a doubt.", "Yes", "Yes - definitely.", "You may rely on it."
+    };
+
+    if (UserQuestion != "" ) {
+        int AnswerArrayIndex = new Random().Next(-1,20);
+        MooseSays(MooseAnswerArray[AnswerArrayIndex]);
+        RunMagicMoose();
+    }
 }
-
